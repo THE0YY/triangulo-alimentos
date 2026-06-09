@@ -1,0 +1,87 @@
+:root{
+  --primary: #0057A8; /* Azul principal */
+  --danger: #D71920;  /* Vermelho */
+  --white: #FFFFFF;   /* Branco */
+  --dark-blue: #003B73; /* Azul escuro (apoio) */
+  --muted: #f4f7fb;   /* Fundo suave */
+  --text: #0b1b2b;    /* Texto quase preto com tom frio */
+}
+
+.login-page{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  background: linear-gradient(180deg,var(--muted),var(--white));
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  color: var(--text);
+}
+
+.header{
+  width:100%;
+  max-width:960px;
+  padding:0 20px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:16px;
+  height: 28vh;
+}
+
+.header-info h1{
+  margin:0; font-size:28px; color:var(--danger); font-weight:700;
+}
+.header-info{ text-align:center }
+.header-info p{ margin:6px 0 0 0; color:var(--danger); opacity:0.95; font-size:15px }
+
+.main{
+  width:100%;
+  max-width:420px;
+  padding:28px 20px;
+  box-sizing:border-box;
+}
+
+.login-form{
+  background: var(--white);
+  border-radius:14px;
+  padding:22px;
+  box-shadow:0 10px 30px rgba(3,30,66,0.08);
+  border: 1px solid rgba(0,0,0,0.04);
+}
+
+.form-title{font-size:20px;margin-bottom:16px;color:var(--dark-blue);font-weight:700}
+
+.tipo-toggle{display:flex;gap:10px;margin-bottom:18px}
+.tipo-toggle button{flex:1;padding:10px 12px;border-radius:8px;border:0;background:#eee;cursor:pointer}
+.tipo-toggle button.active{background:var(--primary);color:var(--white)}
+
+.field{margin-bottom:12px}
+.input-group{display:flex;align-items:center;gap:10px;background:linear-gradient(180deg,#ffffff,#fbfdff);border:1px solid rgba(3,30,66,0.06);padding:10px;border-radius:10px}
+.input-group input{flex:1;border:0;outline:none;padding:8px 4px;background:transparent;font-size:15px;color:var(--text)}
+
+.show-pass{background:transparent;border:0;color:var(--primary);cursor:pointer}
+
+.options{display:flex;justify-content:space-between;align-items:center;margin:10px 0}
+.checkbox{display:flex;align-items:center;gap:8px}
+
+.btn-primary{width:100%;background:var(--primary);color:var(--white);padding:12px;border-radius:10px;border:0;font-weight:700;cursor:pointer;box-shadow:0 6px 18px rgba(0,87,168,0.18)}
+.btn-primary:hover{background:var(--dark-blue)}
+.btn-primary:active{transform:translateY(1px)}
+.error{color:var(--danger);margin-top:12px;text-align:center}
+
+.login-form a{color:var(--primary);text-decoration:none}
+.login-form a:hover{color:var(--dark-blue)}
+
+@media (max-width:480px){
+  .header{padding:20px}
+  .main{padding:16px}
+}
+.error{color:var(--danger);margin-top:12px;text-align:center}
+
+.login-form a{color:var(--primary);text-decoration:none}
+.login-form a:hover{color:var(--dark-blue)}
+
+@media (max-width:480px){
+  .header{padding:20px}
+  .main{padding:16px}
+}
