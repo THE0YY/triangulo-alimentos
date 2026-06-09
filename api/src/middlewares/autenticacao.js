@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 
-const SECRET_KEY = "sua_chave_secreta"
+const SECRET_KEY = "sua_chave_secreta" 
 
 export function autenticarToken(req, res, next){
     const cabecalho = req.headers['authorization']
