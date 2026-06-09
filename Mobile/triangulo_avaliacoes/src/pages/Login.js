@@ -1,4 +1,4 @@
-import { View, Text, TextInput, TouchableOpacity, Switch, ScrollView } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Switch, ScrollView, Image } from 'react-native';
 import { useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { enderecoServidor } from '../utils';
@@ -64,13 +64,14 @@ export default function Login({ navigation }) {
             setMensagem(`Erro ao realizar login: ${error.message}`);
         }
     }
-
+    
     return (
         <ScrollView style={EstilosLogin.container}>
             <View style={EstilosLogin.gradiente}>
                 {/* Cabeçalho com Triângulo Avaliações */}
                 <View style={EstilosLogin.cabecalho}>
                     <View>
+                        <Image source={require('../../assets/logo.png')} />
                         <Text style={EstilosLogin.nomeApp}>Triângulo Avaliações</Text>
                         <Text style={EstilosLogin.subtituloApp}>Onde sua opinião importa</Text>
                     </View>
@@ -79,7 +80,7 @@ export default function Login({ navigation }) {
                 {/* Formulário de login */}
                 <View style={EstilosLogin.conteudoPrincipal}>
                     <View style={EstilosLogin.formularioLogin}>
-                        <Text style={EstilosLogin.titulo}>Acesse sua conta</Text>
+                        <Text style={EstilosLogin.titulo}>Acesse a Dashboard</Text>
 
                         {/* Email */}
                         <View style={EstilosLogin.grupoInput}>

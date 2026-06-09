@@ -1,13 +1,15 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Principal from "./pages/Principal"
 import Login from "./pages/Login"
-import Avaliar from "./pages/Avaliar"
+import AvaliarProduto from "./pages/AvaliarProduto"
+import AvaliarSetor from "./pages/AvaliarSetor"
 
 export default function App(){
   return(
     <BrowserRouter>
       <Routes>
-        <Route path="/avaliar" element={<Avaliar/>}/>
+        <Route path="/avaliar-produto" element={<AvaliarProduto/>}/>
+        <Route path="/avaliar-setor" element={<AvaliarSetor/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/principal" element={<Principal/>}/>
       </Routes>
