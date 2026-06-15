@@ -49,7 +49,8 @@ const documentacao = {
                         content: {
                             "application/json": {
                                 schema: {
-                                    $ref: "#/components/schemas/DashboardResumo" //! DashboardResumo NAO EXISTE
+                                    $ref: "#/components/schemas/DashboardResumo" 
+                                    //! DashboardResumo NAO EXISTE, gerar uma depois..
                                 }
                             }
                         }

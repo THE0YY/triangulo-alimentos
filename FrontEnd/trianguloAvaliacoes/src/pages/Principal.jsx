@@ -18,7 +18,7 @@ export default function Principal () {
     
     function botaoLogout() {
         localStorage.removeItem('UsuarioLogado')
-        navigate('/avaliar')
+        navigate('/login')
     }
     
     return(
