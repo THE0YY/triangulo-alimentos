@@ -32,11 +32,16 @@ const documentacao = {
     paths: {
 
         // DASHBOARD
-
+// DashboardResumo 
         "/dashboard/resumo": {
             get: {
                 tags: ["Dashboard"],
                 summary: "Resumo geral do sistema",
+                security: [
+                    {
+                        bearerAuth: []
+                    }
+                ],
                 description: "Retorna métricas gerais como total de produtos, categorias, setores e avaliações",
                 responses: {
                     200: {
@@ -44,7 +49,7 @@ const documentacao = {
                         content: {
                             "application/json": {
                                 schema: {
-                                    $ref: "#/components/schemas/DashboardResumo"
+                                    $ref: "#/components/schemas/DashboardResumo" //! DashboardResumo NAO EXISTE
                                 }
                             }
                         }
@@ -57,6 +62,11 @@ const documentacao = {
             get: {
                 tags: ["Dashboard"],
                 summary: "Estatísticas de produtos",
+                security: [
+                    {
+                        bearerAuth: []
+                    }
+                ],
                 description: "Retorna produto mais e menos avaliado",
                 responses: {
                     200: {
@@ -77,6 +87,11 @@ const documentacao = {
             get: {
                 tags: ["Dashboard"],
                 summary: "Médias de avaliações",
+                security: [
+                    {
+                        bearerAuth: []
+                    }
+                ],
                 description: "Retorna média geral de avaliações de produtos e setores",
                 responses: {
                     200: {
@@ -97,6 +112,11 @@ const documentacao = {
             get: {
                 tags: ["Dashboard"],
                 summary: "Estatísticas de setores",
+                security: [
+                    {
+                        bearerAuth: []
+                    }
+                ],
                 description: "Retorna melhor e pior setor com base nas avaliações",
                 responses: {
                     200: {
@@ -159,6 +179,11 @@ const documentacao = {
             put: {
                 tags: ["Administradores"],
                 summary: "Atualizar administrador",
+                security: [
+                    {
+                        bearerAuth: []
+                    }
+                ],
                 parameters: [
                     {
                         name: "id_administrador",
@@ -182,6 +207,11 @@ const documentacao = {
             delete: {
                 tags: ["Administradores"],
                 summary: "Remover administrador",
+                security: [
+                    {
+                        bearerAuth: []
+                    }
+                ],
                 parameters: [
                     {
                         name: "id_administrador",
@@ -238,6 +268,11 @@ const documentacao = {
             get: {
                 tags: ["Categorias"],
                 summary: "Listar categorias",
+                security: [
+                    {
+                        bearerAuth: []
+                    }
+                ],
                 responses: {
                     200: {
                         description: "Lista retornada com sucesso",
@@ -255,6 +290,11 @@ const documentacao = {
             post: {
                 tags: ["Categorias"],
                 summary: "Criar categoria",
+                security: [
+                    {
+                        bearerAuth: []
+                    }
+                ],
                 requestBody: {
                     required: true,
                     content: {
@@ -273,6 +313,11 @@ const documentacao = {
             put: {
                 tags: ["Categorias"],
                 summary: "Atualizar categoria",
+                security: [
+                    {
+                        bearerAuth: []
+                    }
+                ],
                 parameters: [
                     {
                         name: "id_categoria",
@@ -296,6 +341,11 @@ const documentacao = {
             delete: {
                 tags: ["Categorias"],
                 summary: "Remover categoria",
+                security: [
+                    {
+                        bearerAuth: []
+                    }
+                ],
                 parameters: [
                     {
                         name: "id_categoria",
@@ -316,6 +366,11 @@ const documentacao = {
             get: {
                 tags: ["Produtos"],
                 summary: "Listar produtos",
+                security: [
+                    {
+                        bearerAuth: []
+                    }
+                ],
                 responses: {
                     200: {
                         description: "Lista retornada com sucesso",
@@ -333,6 +388,11 @@ const documentacao = {
             post: {
                 tags: ["Produtos"],
                 summary: "Criar produto",
+                security: [
+                    {
+                        bearerAuth: []
+                    }
+                ],
                 requestBody: {
                     required: true,
                     content: {
@@ -351,6 +411,11 @@ const documentacao = {
             put: {
                 tags: ["Produtos"],
                 summary: "Atualizar produto",
+                security: [
+                    {
+                        bearerAuth: []
+                    }
+                ],
                 parameters: [
                     {
                         name: "id_produto",
@@ -374,6 +439,11 @@ const documentacao = {
             delete: {
                 tags: ["Produtos"],
                 summary: "Remover produto",
+                security: [
+                    {
+                        bearerAuth: []
+                    }
+                ],
                 parameters: [
                     {
                         name: "id_produto",
@@ -394,6 +464,11 @@ const documentacao = {
             get: {
                 tags: ["Setores"],
                 summary: "Listar setores",
+                security: [
+                    {
+                        bearerAuth: []
+                    }
+                ],
                 responses: {
                     200: {
                         description: "Lista retornada com sucesso",
@@ -411,6 +486,11 @@ const documentacao = {
             post: {
                 tags: ["Setores"],
                 summary: "Criar setor",
+                security: [
+                    {
+                        bearerAuth: []
+                    }
+                ],
                 requestBody: {
                     required: true,
                     content: {
@@ -429,6 +509,11 @@ const documentacao = {
             put: {
                 tags: ["Setores"],
                 summary: "Atualizar setor",
+                security: [
+                    {
+                        bearerAuth: []
+                    }
+                ],
                 parameters: [
                     {
                         name: "id_setor",
@@ -452,6 +537,11 @@ const documentacao = {
             delete: {
                 tags: ["Setores"],
                 summary: "Remover setor",
+                security: [
+                    {
+                        bearerAuth: []
+                    }
+                ],
                 parameters: [
                     {
                         name: "id_setor",
@@ -472,6 +562,11 @@ const documentacao = {
             get: {
                 tags: ["Avaliações Produtos"],
                 summary: "Listar avaliações de produtos",
+                security: [
+                    {
+                        bearerAuth: []
+                    }
+                ],
                 responses: {
                     200: {
                         description: "Lista retornada com sucesso",
@@ -507,6 +602,11 @@ const documentacao = {
             delete: {
                 tags: ["Avaliações Produtos"],
                 summary: "Remover avaliação de produto",
+                security: [
+                    {
+                        bearerAuth: []
+                    }
+                ],
                 parameters: [
                     {
                         name: "id_avaliacao",
@@ -527,6 +627,11 @@ const documentacao = {
             get: {
                 tags: ["Avaliações Setores"],
                 summary: "Listar avaliações de setores",
+                security: [
+                    {
+                        bearerAuth: []
+                    }
+                ],
                 responses: {
                     200: {
                         description: "Lista retornada com sucesso",
@@ -562,6 +667,11 @@ const documentacao = {
             delete: {
                 tags: ["Avaliações Setores"],
                 summary: "Remover avaliação de setor",
+                security: [
+                    {
+                        bearerAuth: []
+                    }
+                ],
                 parameters: [
                     {
                         name: "id_avaliacao",

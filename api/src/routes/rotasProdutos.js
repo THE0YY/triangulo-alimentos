@@ -1,10 +1,13 @@
 import { Router } from "express";
 import { BD } from "../../db.js";
+import { autenticarToken } from "../middlewares/autenticacao.js";
+const SECRET_KEY = 'sua_chave_secreta'
+import jwt from "jsonwebtoken";
 
 const router = Router();
 
 // Listar todos os produtos
-router.get('/produtos', async (req, res) => {
+router.get('/produtos', autenticarToken, async (req, res) => {
     try {
         const comando = `
             SELECT
@@ -32,7 +35,7 @@ router.get('/produtos', async (req, res) => {
 });
 
 // Cadastrar novo produto
-router.post('/produtos', async (req, res) => {
+router.post('/produtos', autenticarToken, async (req, res) => {
     const {
         id_categoria,
         id_administrador,
@@ -97,7 +100,7 @@ router.post('/produtos', async (req, res) => {
 });
 
 // Atualizar produto completamente (PUT)
-router.put('/produtos/:id_produto', async (req, res) => {
+router.put('/produtos/:id_produto', autenticarToken, async (req, res) => {
     const { id_produto } = req.params;
 
     const {
@@ -175,7 +178,7 @@ router.put('/produtos/:id_produto', async (req, res) => {
 });
 
 // Atualizar produto parcialmente (PATCH)
-router.patch('/produtos/:id_produto', async (req, res) => {
+router.patch('/produtos/:id_produto', autenticarToken, async (req, res) => {
     const { id_produto } = req.params;
 
     const {
@@ -275,7 +278,7 @@ router.patch('/produtos/:id_produto', async (req, res) => {
 });
 
 // Excluir produto
-router.delete('/produtos/:id_produto', async (req, res) => {
+router.delete('/produtos/:id_produto', autenticarToken, async (req, res) => {
     const { id_produto } = req.params;
 
     try {

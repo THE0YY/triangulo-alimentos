@@ -1,5 +1,8 @@
 import { Router } from "express";
 import { BD } from "../../db.js";
+import { autenticarToken } from "../middlewares/autenticacao.js";
+const SECRET_KEY = 'sua_chave_secreta'
+import jwt from "jsonwebtoken";
 
 const router = Router();
 
@@ -7,7 +10,7 @@ const router = Router();
 // ==============================
 // RESUMO GERAL
 // ==============================
-router.get("/dashboard/resumo", async (req, res) => {
+router.get("/dashboard/resumo", autenticarToken, async (req, res) => {
     try {
         const produtos = await BD.query(`SELECT COUNT(*) FROM produtos`);
         const categorias = await BD.query(`SELECT COUNT(*) FROM categorias`);
@@ -37,7 +40,7 @@ router.get("/dashboard/resumo", async (req, res) => {
 // ==============================
 // MÉDIA DE AVALIAÇÕES
 // ==============================
-router.get("/dashboard/avaliacoes", async (req, res) => {
+router.get("/dashboard/avaliacoes", autenticarToken, async (req, res) => {
     try {
         const mediaProdutos = await BD.query(`
             SELECT COALESCE(AVG(nota),0) AS media
@@ -68,7 +71,7 @@ router.get("/dashboard/avaliacoes", async (req, res) => {
 // ==============================
 // PRODUTOS MAIS E MENOS AVALIADOS
 // ==============================
-router.get("/dashboard/produtos", async (req, res) => {
+router.get("/dashboard/produtos", autenticarToken, async (req, res) => {
     try {
         const maisAvaliado = await BD.query(`
             SELECT p.id_produto, p.nome, AVG(a.nota) as media
@@ -107,7 +110,7 @@ router.get("/dashboard/produtos", async (req, res) => {
 // ==============================
 // SETORES MAIS E MENOS AVALIADOS
 // ==============================
-router.get("/dashboard/setores", async (req, res) => {
+router.get("/dashboard/setores", autenticarToken, async (req, res) => {
     try {
         const melhor = await BD.query(`
             SELECT s.id_setor, s.cidade, AVG(a.nota) as media
@@ -146,7 +149,7 @@ router.get("/dashboard/setores", async (req, res) => {
 // ==============================
 // ÚLTIMAS AVALIAÇÕES
 // ==============================
-router.get("/dashboard/ultimas-avaliacoes", async (req, res) => {
+router.get("/dashboard/ultimas-avaliacoes", autenticarToken, async (req, res) => {
     try {
         const produtos = await BD.query(`
             SELECT 'produto' AS tipo, id_produto AS id, nota, comentario, email

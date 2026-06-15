@@ -1,10 +1,13 @@
 import { Router } from "express";
 import { BD } from "../../db.js";
+import { autenticarToken } from "../middlewares/autenticacao.js";
+const SECRET_KEY = 'sua_chave_secreta'
+import jwt from "jsonwebtoken";
 
 const router = Router();
 
 // Listar todas as categorias
-router.get('/categorias', async (req, res) => {
+router.get('/categorias', autenticarToken, async (req, res) => {
     try {
         const comando = `SELECT * FROM categorias`;
         const categorias = await BD.query(comando);
@@ -19,7 +22,7 @@ router.get('/categorias', async (req, res) => {
 });
 
 // Cadastrar nova categoria
-router.post('/categorias', async (req, res) => {
+router.post('/categorias', autenticarToken, async (req, res) => {
     const { nome, descricao } = req.body;
 
     try {
@@ -45,7 +48,7 @@ router.post('/categorias', async (req, res) => {
 });
 
 // Atualizar categoria completamente (PUT)
-router.put('/categorias/:id_categoria', async (req, res) => {
+router.put('/categorias/:id_categoria', autenticarToken, async (req, res) => {
     const { id_categoria } = req.params;
     const { nome, descricao } = req.body;
 
@@ -57,7 +60,7 @@ router.put('/categorias/:id_categoria', async (req, res) => {
 
         if (verificarCategoria.rows.length === 0) {
             return res.status(404).json({
-                message: 'Categoria não encontrada'
+                message: 'Categoria não encontrada com esse ID'
             });
         }
 
@@ -85,7 +88,7 @@ router.put('/categorias/:id_categoria', async (req, res) => {
 });
 
 // Atualizar categoria parcialmente (PATCH)
-router.patch('/categorias/:id_categoria', async (req, res) => {
+router.patch('/categorias/:id_categoria', autenticarToken, async (req, res) => {
     const { id_categoria } = req.params;
     const { nome, descricao } = req.body;
 
@@ -146,7 +149,7 @@ router.patch('/categorias/:id_categoria', async (req, res) => {
 });
 
 // Excluir categoria
-router.delete('/categorias/:id_categoria', async (req, res) => {
+router.delete('/categorias/:id_categoria', autenticarToken, async (req, res) => {
     const { id_categoria } = req.params;
 
     try {

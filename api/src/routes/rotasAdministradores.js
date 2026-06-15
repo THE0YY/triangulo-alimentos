@@ -1,11 +1,10 @@
 import { Router } from "express";
 import { BD } from "../../db.js";
 import { autenticarToken } from "../middlewares/autenticacao.js";
-
+const SECRET_KEY = 'sua_chave_secreta'
 import jwt from "jsonwebtoken";
 
 const router = Router();
-const SECRET_KEY = 'sua_chave_secreta'
 
 // Listar todos os administradores
 router.get('/administradores', autenticarToken, async (req, res) => {
@@ -71,7 +70,7 @@ router.post('/administradores', async (req, res) => {
 });
 
 // Atualizar administrador completamente (PUT)
-router.put('/administradores/:id_administrador', async (req, res) => {
+router.put('/administradores/:id_administrador', autenticarToken, async (req, res) => {
     const { id_administrador } = req.params;
     const { nome, email, senha } = req.body;
 
@@ -132,7 +131,7 @@ router.put('/administradores/:id_administrador', async (req, res) => {
 });
 
 // Atualizar administrador parcialmente (PATCH)
-router.patch('/administradores/:id_administrador', async (req, res) => {
+router.patch('/administradores/:id_administrador', autenticarToken, async (req, res) => {
     const { id_administrador } = req.params;
     const { nome, email, senha } = req.body;
 
@@ -213,7 +212,7 @@ router.patch('/administradores/:id_administrador', async (req, res) => {
 });
 
 // Excluir administrador
-router.delete('/administradores/:id_administrador', async (req, res) => {
+router.delete('/administradores/:id_administrador', autenticarToken, async (req, res) => {
     const { id_administrador } = req.params;
 
     try {

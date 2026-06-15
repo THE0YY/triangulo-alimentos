@@ -1,10 +1,13 @@
 import { Router } from "express";
 import { BD } from "../../db.js";
+import { autenticarToken } from "../middlewares/autenticacao.js";
+const SECRET_KEY = 'sua_chave_secreta'
+import jwt from "jsonwebtoken";
 
 const router = Router();
 
 // Listar todos os setores
-router.get('/setores', async (req, res) => {
+router.get('/setores', autenticarToken, async (req, res) => {
     try {
         const comando = `SELECT * FROM setores`;
         const setores = await BD.query(comando);
@@ -21,7 +24,7 @@ router.get('/setores', async (req, res) => {
 });
 
 // Cadastrar novo setor
-router.post('/setores', async (req, res) => {
+router.post('/setores', autenticarToken, async (req, res) => {
     const { estado, cidade } = req.body;
 
     try {
@@ -61,7 +64,7 @@ router.post('/setores', async (req, res) => {
 });
 
 // Atualizar setor completamente (PUT)
-router.put('/setores/:id_setor', async (req, res) => {
+router.put('/setores/:id_setor', autenticarToken, async (req, res) => {
     const { id_setor } = req.params;
     const { estado, cidade } = req.body;
 
@@ -115,7 +118,7 @@ router.put('/setores/:id_setor', async (req, res) => {
 });
 
 // Atualizar setor parcialmente (PATCH)
-router.patch('/setores/:id_setor', async (req, res) => {
+router.patch('/setores/:id_setor', autenticarToken, async (req, res) => {
     const { id_setor } = req.params;
     const { estado, cidade } = req.body;
 
@@ -184,7 +187,7 @@ router.patch('/setores/:id_setor', async (req, res) => {
 });
 
 // Excluir setor
-router.delete('/setores/:id_setor', async (req, res) => {
+router.delete('/setores/:id_setor', autenticarToken, async (req, res) => {
     const { id_setor } = req.params;
 
     try {

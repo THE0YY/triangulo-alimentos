@@ -1,10 +1,13 @@
 import { Router } from "express";
 import { BD } from "../../db.js";
+import { autenticarToken } from "../middlewares/autenticacao.js";
+const SECRET_KEY = 'sua_chave_secreta'
+import jwt from "jsonwebtoken";
 
 const router = Router();
 
 // LISTAR
-router.get("/avaliacoes-produtos", async (req, res) => {
+router.get("/avaliacoes-produtos", autenticarToken, async (req, res) => {
     try {
         const result = await BD.query(`
             SELECT 
@@ -69,7 +72,7 @@ router.post("/avaliacoes-produtos", async (req, res) => {
 });
 
 // DELETE
-router.delete("/avaliacoes-produtos/:id", async (req, res) => {
+router.delete("/avaliacoes-produtos/:id", autenticarToken, async (req, res) => {
     try {
         await BD.query(`DELETE FROM avaliacoes_produtos WHERE id_avaliacao = $1`, [
             req.params.id
