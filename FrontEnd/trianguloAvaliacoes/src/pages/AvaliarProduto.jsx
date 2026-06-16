@@ -2,7 +2,7 @@ import { useState } from "react"
 import { enderecoServidor } from "../utils"
 import { useNavigate } from "react-router-dom"
 
-import imagem from  '../../../../../../../febrerico.jpg'
+import imagem from  'https://i.pinimg.com/736x/a2/6b/0f/a26b0f539adf9300c2eea076be7f30f9.jpg'
 export default function AvaliarProduto() {
     const [tipoAvaliacao, setTipoAvaliacao] = useState(false)
 
