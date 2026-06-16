@@ -87,67 +87,6 @@ router.put('/categorias/:id_categoria', autenticarToken, async (req, res) => {
     }
 });
 
-// Atualizar categoria parcialmente (PATCH)
-router.patch('/categorias/:id_categoria', autenticarToken, async (req, res) => {
-    const { id_categoria } = req.params;
-    const { nome, descricao } = req.body;
-
-    try {
-        const verificarCategoria = await BD.query(
-            `SELECT * FROM categorias WHERE id_categoria = $1`,
-            [id_categoria]
-        );
-
-        if (verificarCategoria.rows.length === 0) {
-            return res.status(404).json({
-                message: 'Categoria não encontrada'
-            });
-        }
-
-        const campos = [];
-        const valores = [];
-        let contador = 1;
-
-        if (nome !== undefined) {
-            campos.push(`nome = $${contador}`);
-            valores.push(nome);
-            contador++;
-        }
-
-        if (descricao !== undefined) {
-            campos.push(`descricao = $${contador}`);
-            valores.push(descricao);
-            contador++;
-        }
-
-        if (campos.length === 0) {
-            return res.status(400).json({
-                message: 'Nenhum campo a atualizar'
-            });
-        }
-
-        valores.push(id_categoria);
-
-        const comando = `
-            UPDATE categorias
-            SET ${campos.join(', ')}
-            WHERE id_categoria = $${contador}
-        `;
-
-        await BD.query(comando, valores);
-
-        return res.status(200).json({
-            message: 'Categoria atualizada com sucesso!'
-        });
-
-    } catch (error) {
-        console.error('Erro ao atualizar categoria', error.message);
-        return res.status(500).json({
-            message: 'Erro interno do servidor: ' + error.message
-        });
-    }
-});
-
 // Excluir categoria
 router.delete('/categorias/:id_categoria', autenticarToken, async (req, res) => {
     const { id_categoria } = req.params;

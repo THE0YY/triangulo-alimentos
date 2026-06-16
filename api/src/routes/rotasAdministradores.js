@@ -48,7 +48,7 @@ router.post('/administradores', async (req, res) => {
         });
 
     } catch (error) {
-    console.error('Erro ao cadastrar administrador', error);
+    console.error('Erro ao cadastrar administrador', error.message);
 
     if (error.code === '23505') {
         return res.status(409).json({
@@ -109,7 +109,7 @@ router.put('/administradores/:id_administrador', autenticarToken, async (req, re
         });
 
     }catch (error) {
-    console.error('Erro ao atualizar administrador', error);
+    console.error('Erro ao atualizar administrador', error.message);
 
     if (error.code === '23505') {
         return res.status(409).json({
@@ -125,87 +125,6 @@ router.put('/administradores/:id_administrador', autenticarToken, async (req, re
 
     return res.status(500).json({
         message: 'Falha ao atualizar o administrador.',
-        detalhe: error.message
-    });
-}
-});
-
-// Atualizar administrador parcialmente (PATCH)
-router.patch('/administradores/:id_administrador', autenticarToken, async (req, res) => {
-    const { id_administrador } = req.params;
-    const { nome, email, senha } = req.body;
-
-    try {
-        const verificarAdministrador = await BD.query(
-            `SELECT * FROM administradores WHERE id_administrador = $1`,
-            [id_administrador]
-        );
-
-        if (verificarAdministrador.rows.length === 0) {
-            return res.status(404).json({
-            message: `Nenhum administrador encontrado com o ID ${id_administrador}.`
-            });
-        }
-
-        const campos = [];
-        const valores = [];
-        let contador = 1;
-
-        if (nome !== undefined) {
-            campos.push(`nome = $${contador}`);
-            valores.push(nome);
-            contador++;
-        }
-
-        if (email !== undefined) {
-            campos.push(`email = $${contador}`);
-            valores.push(email);
-            contador++;
-        }
-
-        if (senha !== undefined) {
-            campos.push(`senha = $${contador}`);
-            valores.push(senha);
-            contador++;
-        }
-
-        if (campos.length === 0) {
-            return res.status(400).json({
-                message: 'Informe pelo menos um dos campos: nome, email ou senha.'
-            });
-        }
-
-        valores.push(id_administrador);
-
-        const comando = `
-            UPDATE administradores
-            SET ${campos.join(', ')}
-            WHERE id_administrador = $${contador}
-        `;
-
-        await BD.query(comando, valores);
-
-        return res.status(200).json({
-            message: 'Administrador atualizado com sucesso!'
-        });
-
-    } catch (error) {
-    console.error('Erro ao atualizar administrador', error);
-
-    if (error.code === '23505') {
-        return res.status(409).json({
-            message: 'O e-mail informado já pertence a outro administrador.'
-        });
-    }
-
-    if (error.code === '22P02') {
-        return res.status(400).json({
-            message: 'O ID informado é inválido.'
-        });
-    }
-
-    return res.status(500).json({
-        message: 'Não foi possível atualizar os dados do administrador.',
         detalhe: error.message
     });
 }
@@ -239,7 +158,7 @@ router.delete('/administradores/:id_administrador', autenticarToken, async (req,
         });
 
     } catch (error) {
-    console.error('Erro ao remover administrador', error);
+    console.error('Erro ao remover administrador', error.message);
 
     if (error.code === '23503') {
         return res.status(409).json({
@@ -307,7 +226,7 @@ router.post('/login', async(req, res) =>{
             }
         })
     }catch(error){
-    console.error('Erro ao realizar login', error);
+    console.error('Erro ao realizar login', error.message);
     return res.status(500).json({
         message: 'Erro ao processar a solicitação de login.',
         detalhe: error.message

@@ -2,6 +2,7 @@ import { useState } from "react"
 import { enderecoServidor } from "../utils"
 import { useNavigate } from "react-router-dom"
 
+import imagem from  '../../../../../../../febrerico.jpg'
 export default function AvaliarProduto() {
     const [tipoAvaliacao, setTipoAvaliacao] = useState(false)
 
@@ -42,19 +43,22 @@ return (
         gap: 10,
         display: "flex",
         flexDirection: "column",
-        minHeight: "100vh",
         padding: 30,
+        margin: 'auto',
+        marginTop: 40,
+        height: 'auto',
+        width: 500,
         backgroundColor: '#fff',
         color: '#003B73',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        boxShadow: '3px 6px 15px rgba(0, 0, 0, 0.2)'
     }}>
-        <div>
-            <div style={{ display: 'flex', flexDirection: 'column', color: '#003B73' }} >
-                <h1 style={{ textAlign: 'center', marginBottom: 25 }}>Avalie nosso produto!</h1>
-                <label style={{ fontWeight: 'bold', color: '#0057A8' }}>Produto</label>
-                <input placeholder="Digite o id do produto" style={{ width: 400, borderRadius: 8, border: '1px solid #0057A8', padding: 8, backgroundColor: '#f4f7fb', color: '#003B73' }} value={idProduto} onChange={(e) => setIdProduto(e.target.value)} />
-            </div>
+        <img src={imagem} style={{height: 175}} />
+        <div style={{ display: 'flex', flexDirection: 'column', color: '#003B73' }} >
+            <h1 style={{ textAlign: 'center', marginBottom: 25 }}>Avalie nosso produto!</h1>
+            <label style={{ fontWeight: 'bold', color: '#0057A8' }}>Produto</label>
+            <input placeholder="Digite o id do produto" style={{ width: 400, borderRadius: 8, border: '1px solid #0057A8', padding: 8, backgroundColor: '#f4f7fb', color: '#003B73' }} value={idProduto} onChange={(e) => setIdProduto(e.target.value)} />
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', color: '#003B73' }} >
             <label style={{ fontWeight: 'bold', color: '#0057A8' }}>Nota</label>

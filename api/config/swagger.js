@@ -32,16 +32,12 @@ const documentacao = {
     paths: {
 
         // DASHBOARD
-// DashboardResumo 
+        // DashboardResumo 
         "/dashboard/resumo": {
             get: {
                 tags: ["Dashboard"],
                 summary: "Resumo geral do sistema",
-                security: [
-                    {
-                        bearerAuth: []
-                    }
-                ],
+                security: [{ bearerAuth: [] }],
                 description: "Retorna métricas gerais como total de produtos, categorias, setores e avaliações",
                 responses: {
                     200: {
@@ -49,16 +45,20 @@ const documentacao = {
                         content: {
                             "application/json": {
                                 schema: {
-                                    $ref: "#/components/schemas/DashboardResumo" 
-                                    //! DashboardResumo NAO EXISTE, gerar uma depois..
+                                    $ref: "#/components/schemas/DashboardResumo"
                                 }
                             }
                         }
+                    },
+                    400: {
+                        description: "Requisição inválida"
+                    },
+                    500: {
+                        description: "Erro interno no servidor"
                     }
                 }
             }
         },
-
         "/dashboard/produtos": {
             get: {
                 tags: ["Dashboard"],
@@ -305,7 +305,9 @@ const documentacao = {
                     }
                 },
                 responses: {
-                    201: { description: "Categoria criada com sucesso" }
+                    201: { description: "Categoria criada com sucesso" },
+                    400: {description: "Requisição inválida"},
+                    500: {description: "Erro interno no servidor"}
                 }
             }
         },
@@ -336,7 +338,9 @@ const documentacao = {
                     }
                 },
                 responses: {
-                    200: { description: "Atualizado com sucesso" }
+                    200: { description: "Atualizado com sucesso" },
+                    400: {description: "Requisição inválida"},
+                    500: {description: "Erro interno no servidor"}
                 }
             },
             delete: {
@@ -356,7 +360,9 @@ const documentacao = {
                     }
                 ],
                 responses: {
-                    200: { description: "Removido com sucesso" }
+                    200: { description: "Removido com sucesso" },
+                    400: {description: "Requisição inválida"},
+                    500: {description: "Erro interno no servidor"}
                 }
             }
         },
@@ -383,6 +389,9 @@ const documentacao = {
                                 }
                             }
                         }
+                    },
+                    500: {
+                        description: "Erro interno no servidor"
                     }
                 }
             },
@@ -403,7 +412,9 @@ const documentacao = {
                     }
                 },
                 responses: {
-                    201: { description: "Produto criado com sucesso" }
+                    201: { description: "Produto criado com sucesso" },
+                    400: {description: "Requisição inválida"},
+                    500: {description: "Erro interno no servidor"}
                 }
             }
         },
@@ -434,7 +445,9 @@ const documentacao = {
                     }
                 },
                 responses: {
-                    200: { description: "Atualizado com sucesso" }
+                    200: { description: "Atualizado com sucesso" },
+                    400: {description: "Requisição inválida"},
+                    500: {description: "Erro interno no servidor"}
                 }
             },
             delete: {
@@ -454,7 +467,9 @@ const documentacao = {
                     }
                 ],
                 responses: {
-                    200: { description: "Removido com sucesso" }
+                    200: { description: "Removido com sucesso" },
+                    400: {description: "Requisição inválida"},
+                    500: {description: "Erro interno no servidor"}
                 }
             }
         },
@@ -481,7 +496,8 @@ const documentacao = {
                                 }
                             }
                         }
-                    }
+                    },
+                    500: {description: "Erro interno no servidor"}
                 }
             },
             post: {
@@ -501,7 +517,9 @@ const documentacao = {
                     }
                 },
                 responses: {
-                    201: { description: "Setor criado com sucesso" }
+                    201: { description: "Setor criado com sucesso" },
+                    400: {description: "Requisição inválida"},
+                    500: {description: "Erro interno no servidor"}
                 }
             }
         },
@@ -532,7 +550,9 @@ const documentacao = {
                     }
                 },
                 responses: {
-                    200: { description: "Atualizado com sucesso" }
+                    200: { description: "Atualizado com sucesso" },
+                    400: {description: "Requisição inválida"},
+                    500: {description: "Erro interno no servidor"}
                 }
             },
             delete: {
@@ -552,7 +572,9 @@ const documentacao = {
                     }
                 ],
                 responses: {
-                    200: { description: "Removido com sucesso" }
+                    200: { description: "Removido com sucesso" },
+                    400: {description: "Requisição inválida"},
+                    500: {description: "Erro interno no servidor"}
                 }
             }
         },
@@ -579,7 +601,8 @@ const documentacao = {
                                 }
                             }
                         }
-                    }
+                    },
+                    500: {description: "Erro interno no servidor"}
                 }
             },
             post: {
@@ -594,7 +617,9 @@ const documentacao = {
                     }
                 },
                 responses: {
-                    201: { description: "Avaliação criada com sucesso" }
+                    201: { description: "Avaliação criada com sucesso" },
+                    400: {description: "Requisição inválida"},
+                    500: {description: "Erro interno no servidor"}
                 }
             }
         },
@@ -617,7 +642,9 @@ const documentacao = {
                     }
                 ],
                 responses: {
-                    200: { description: "Removido com sucesso" }
+                    200: { description: "Removido com sucesso" },
+                    400: {description: "Requisição inválida"},
+                    500: {description: "Erro interno no servidor"}
                 }
             }
         },
@@ -644,7 +671,8 @@ const documentacao = {
                                 }
                             }
                         }
-                    }
+                    },
+                    500: {description: "Erro interno no servidor"}
                 }
             },
             post: {
@@ -659,7 +687,9 @@ const documentacao = {
                     }
                 },
                 responses: {
-                    201: { description: "Avaliação criada com sucesso" }
+                    201: { description: "Avaliação criada com sucesso" },
+                    400: {description: "Requisição inválida"},
+                    500: {description: "Erro interno no servidor"}
                 }
             }
         },
@@ -682,7 +712,9 @@ const documentacao = {
                     }
                 ],
                 responses: {
-                    200: { description: "Removido com sucesso" }
+                    200: { description: "Removido com sucesso" },
+                    400: {description: "Requisição inválida"},
+                    500: {description: "Erro interno no servidor"}
                 }
             }
         }
@@ -692,12 +724,14 @@ const documentacao = {
     // SCHEMA
 
     components: {
-        securitySchemes:{bearerAuth: {
-            type: 'http',
-            scheme: 'bearer',
-            bearerFormat: 'JWT',
-            description: 'Insira o token jwt obtido do login'
-        }},
+        securitySchemes: {
+            bearerAuth: {
+                type: 'http',
+                scheme: 'bearer',
+                bearerFormat: 'JWT',
+                description: 'Insira o token jwt obtido do login'
+            }
+        },
 
         schemas: {
 
@@ -707,6 +741,17 @@ const documentacao = {
                     id_administrador: { type: "integer", example: 1 },
                     nome: { type: "string", example: "Admin" },
                     email: { type: "string", example: "admin@email.com" }
+                }
+            },
+
+            DashboardResumo: {
+                type: "object",
+                properties: {
+                    totalProdutos: { type: "integer", example: 120 },
+                    totalCategorias: { type: "integer", example: 8 },
+                    totalSetores: { type: "integer", example: 15 },
+                    totalAvaliacoesProdutos: { type: "integer", example: 340 },
+                    totalAvaliacoesSetores: { type: "integer", example: 210 }
                 }
             },
 
@@ -838,7 +883,7 @@ const documentacao = {
                 }
             },
 
-            
+
             AvaliacaoSetorCreate: {
                 type: "object",
                 properties: {
